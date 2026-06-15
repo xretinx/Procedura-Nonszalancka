@@ -1,0 +1,1295 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     58864,       1287]
+NotebookOptionsPosition[     58278,       1269]
+NotebookOutlinePosition[     58680,       1285]
+CellTagsIndexPosition[     58637,       1282]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+     "===", "===", "=="}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{"CORE", " ", "ALGORITHMS", " ", "LOGIC"}], "*)"}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+     "===", "===", "=="}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{"1.", " ", "Algorytm", " ", "Bezkwadratowy"}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"AlgorytmBezkwadratowy", "[", 
+      RowBox[{
+      "startoweSlowo_String", ",", "alfabet_List", ",", 
+       "liczbaIteracji_Integer", ",", "kierunek_String"}], "]"}], ":=", 
+     RowBox[{"Block", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "SprawdzajBezkwadratowoscQ", ",", "ZnajdzRozszerzenieSlowaOdPoczatku",
+          ",", "ZnajdzRozszerzenieSlowaOdKonca", ",", "WykonajRozszerzenie", 
+         ",", 
+         RowBox[{"biezaceSlowo", "=", "startoweSlowo"}], ",", 
+         "tabelaDanychCSV", ",", "rezultatRozszerzenia", ",", 
+         "indeksWstawieniaLitery", ",", 
+         RowBox[{"numerKroku", "=", "1"}], ",", "powodZakonczenia", ",", 
+         "czasIwyniki"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"SprawdzajBezkwadratowoscQ", "[", "tekst_", "]"}], ":=", 
+         RowBox[{"StringFreeQ", "[", 
+          RowBox[{"tekst", ",", 
+           RowBox[{"x__", "~~", "x__"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"ZnajdzRozszerzenieSlowaOdPoczatku", "[", 
+          RowBox[{"aktualneSlowo_", ",", "alf_"}], "]"}], ":=", 
+         RowBox[{"Catch", "[", 
+          RowBox[{
+           RowBox[{"Do", "[", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"SprawdzajBezkwadratowoscQ", "[", 
+                RowBox[{"StringInsert", "[", 
+                 RowBox[{"aktualneSlowo", ",", "litera", ",", "pozycja"}], 
+                 "]"}], "]"}], ",", 
+               RowBox[{"Throw", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"StringInsert", "[", 
+                   RowBox[{"aktualneSlowo", ",", "litera", ",", "pozycja"}], 
+                   "]"}], ",", "pozycja"}], "}"}], "]"}]}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"pozycja", ",", "1", ",", 
+               RowBox[{
+                RowBox[{"StringLength", "[", "aktualneSlowo", "]"}], "+", 
+                "1"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"litera", ",", "alf"}], "}"}]}], "]"}], ";", 
+           "\[IndentingNewLine]", "$Failed"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"ZnajdzRozszerzenieSlowaOdKonca", "[", 
+          RowBox[{"aktualneSlowo_", ",", "alf_"}], "]"}], ":=", 
+         RowBox[{"Catch", "[", 
+          RowBox[{
+           RowBox[{"Do", "[", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"SprawdzajBezkwadratowoscQ", "[", 
+                RowBox[{"StringInsert", "[", 
+                 RowBox[{"aktualneSlowo", ",", "litera", ",", 
+                  RowBox[{"-", "pozycjaOdKonca"}]}], "]"}], "]"}], ",", 
+               RowBox[{"Throw", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"StringInsert", "[", 
+                   RowBox[{"aktualneSlowo", ",", "litera", ",", 
+                    RowBox[{"-", "pozycjaOdKonca"}]}], "]"}], ",", 
+                  RowBox[{"-", "pozycjaOdKonca"}]}], "}"}], "]"}]}], "]"}], 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{"pozycjaOdKonca", ",", "1", ",", 
+               RowBox[{
+                RowBox[{"StringLength", "[", "aktualneSlowo", "]"}], "+", 
+                "1"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"litera", ",", "alf"}], "}"}]}], "]"}], ";", 
+           "\[IndentingNewLine]", "$Failed"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"WykonajRozszerzenie", "[", 
+          RowBox[{"slowo_", ",", "alf_"}], "]"}], ":=", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"kierunek", "===", "\"\<OdPoczatku\>\""}], ",", 
+           RowBox[{"ZnajdzRozszerzenieSlowaOdPoczatku", "[", 
+            RowBox[{"slowo", ",", "alf"}], "]"}], ",", 
+           RowBox[{"ZnajdzRozszerzenieSlowaOdKonca", "[", 
+            RowBox[{"slowo", ",", "alf"}], "]"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+        "powodZakonczenia", "=", "\"\<Osiagnieto limit iteracji\>\""}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"czasIwyniki", "=", 
+         RowBox[{"AbsoluteTiming", "[", 
+          RowBox[{
+           RowBox[{"tabelaDanychCSV", "=", 
+            RowBox[{"{", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<DlugoscSlowa\>\"", ",", "\"\<SlowoBezKwadratow\>\"", ",", 
+               "\"\<ParametrPrzesuniecia\>\""}], "}"}], "}"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"tabelaDanychCSV", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"StringLength", "[", "biezaceSlowo", "]"}], ",", 
+               "biezaceSlowo", ",", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"kierunek", "===", "\"\<OdPoczatku\>\""}], ",", "1", 
+                 ",", 
+                 RowBox[{"-", "1"}]}], "]"}]}], "}"}]}], "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"While", "[", 
+            RowBox[{
+             RowBox[{"numerKroku", "<=", "liczbaIteracji"}], ",", 
+             RowBox[{
+              RowBox[{"rezultatRozszerzenia", "=", 
+               RowBox[{"WykonajRozszerzenie", "[", 
+                RowBox[{"biezaceSlowo", ",", "alfabet"}], "]"}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"rezultatRozszerzenia", "===", "$Failed"}], ",", 
+                RowBox[{
+                 RowBox[{
+                 "powodZakonczenia", "=", 
+                  "\"\<Algorytm utknal - brak mozliwosci dalszego \
+rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"Break", "[", "]"}], ";"}]}], "]"}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"biezaceSlowo", "=", 
+               RowBox[{"rezultatRozszerzenia", "[", 
+                RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+              RowBox[{"indeksWstawieniaLitery", "=", 
+               RowBox[{"rezultatRozszerzenia", "[", 
+                RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+              RowBox[{"AppendTo", "[", 
+               RowBox[{"tabelaDanychCSV", ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"StringLength", "[", "biezaceSlowo", "]"}], ",", 
+                  "biezaceSlowo", ",", "indeksWstawieniaLitery"}], "}"}]}], 
+               "]"}], ";", "\[IndentingNewLine]", 
+              RowBox[{"numerKroku", "++"}], ";"}]}], "]"}], ";", 
+           "\[IndentingNewLine]", "tabelaDanychCSV"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"<|", 
+         RowBox[{
+          RowBox[{"\"\<Czas\>\"", "->", 
+           RowBox[{"czasIwyniki", "[", 
+            RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+          RowBox[{"\"\<WynikFinalny\>\"", "->", "biezaceSlowo"}], ",", 
+          RowBox[{"\"\<Status\>\"", "->", "powodZakonczenia"}], ",", 
+          RowBox[{"\"\<Historia\>\"", "->", 
+           RowBox[{"czasIwyniki", "[", 
+            RowBox[{"[", "2", "]"}], "]"}]}]}], "|>"}]}]}], "]"}]}], ";"}], 
+   "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"2.", " ", "Algorytm", " ", "Liczb", " ", "Pierwszych"}], "-", 
+     RowBox[{"Wariant", " ", "A", " ", 
+      RowBox[{"(", 
+       RowBox[{"Z", " ", 
+        RowBox[{"Catch", "/", "Throw"}]}], ")"}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"AlgorytmPrimeA", "[", 
+      RowBox[{"n_Integer", ",", "alfabet_List", ",", "start_"}], "]"}], ":=", 
+     RowBox[{"Block", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"a", ",", "czasy", ",", "kroki", ",", "alfabetInt"}], "}"}], 
+       ",", 
+       RowBox[{
+        RowBox[{"alfabetInt", "=", 
+         RowBox[{"ToExpression", "/@", "alfabet"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"a", "[", "1", "]"}], "=", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"IntegerQ", "[", "start", "]"}], ",", "start", ",", 
+           RowBox[{"ToExpression", "[", "start", "]"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"a", "[", "k_", "]"}], ":=", 
+         RowBox[{
+          RowBox[{"a", "[", "k", "]"}], "=", 
+          RowBox[{"Catch", "[", 
+           RowBox[{"Block", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"p", ",", 
+               RowBox[{"d", "=", 
+                RowBox[{"IntegerDigits", "[", 
+                 RowBox[{"a", "[", 
+                  RowBox[{"k", "-", "1"}], "]"}], "]"}]}]}], "}"}], ",", 
+             RowBox[{"Do", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"p", "=", 
+                 RowBox[{"FromDigits", "@", 
+                  RowBox[{"Insert", "[", 
+                   RowBox[{"d", ",", "c", ",", 
+                    RowBox[{"-", "i"}]}], "]"}]}]}], ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"p", ">", 
+                    RowBox[{"a", "[", 
+                    RowBox[{"k", "-", "1"}], "]"}]}], "&&", 
+                   RowBox[{"PrimeQ", "[", "p", "]"}]}], ",", 
+                  RowBox[{"Throw", "@", "p"}]}], "]"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"c", ",", "alfabetInt"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"i", ",", "1", ",", 
+                 RowBox[{"1", "+", 
+                  RowBox[{"Length", "@", "d"}]}]}], "}"}]}], "]"}]}], "]"}], 
+           "]"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"czasy", ",", "kroki"}], "}"}], "=", 
+         RowBox[{"AbsoluteTiming", "[", 
+          RowBox[{"Array", "[", 
+           RowBox[{"a", ",", "n"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"<|", 
+         RowBox[{
+          RowBox[{"\"\<Czas\>\"", "->", "czasy"}], ",", 
+          RowBox[{"\"\<WynikFinalny\>\"", "->", 
+           RowBox[{"Last", "[", "kroki", "]"}]}], ",", 
+          RowBox[{"\"\<Status\>\"", "->", "\"\<Ukonczono (Wariant A)\>\""}], 
+          ",", 
+          RowBox[{"\"\<Historia\>\"", "->", 
+           RowBox[{"MapIndexed", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"#2", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}], ",", "#1"}], "}"}], "&"}], 
+             ",", "kroki"}], "]"}]}]}], "|>"}]}]}], "]"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"3.", " ", "Algorytm", " ", "Liczb", " ", "Pierwszych"}], "-", 
+     RowBox[{"Wariant", " ", "B", " ", 
+      RowBox[{"(", 
+       RowBox[{"Z", " ", "p\:0119tlami", " ", "For"}], ")"}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"AlgorytmPrimeB", "[", 
+      RowBox[{"n_Integer", ",", "start_"}], "]"}], ":=", 
+     RowBox[{"Block", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"k", ",", "K", ",", "r", ",", "m", ",", "czasIwyniki", ",", 
+         RowBox[{"powod", "=", "\"\<Osiagnieto limit iteracji\>\""}]}], "}"}],
+        ",", 
+       RowBox[{
+        RowBox[{"k", "=", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"IntegerQ", "[", "start", "]"}], ",", "start", ",", 
+           RowBox[{"ToExpression", "[", "start", "]"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"czasIwyniki", "=", 
+         RowBox[{"AbsoluteTiming", "[", 
+          RowBox[{
+           RowBox[{"K", "=", 
+            RowBox[{"{", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", "k"}], "}"}], "}"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"For", "[", 
+            RowBox[{
+             RowBox[{"step", "=", "1"}], ",", 
+             RowBox[{"step", "<=", "n"}], ",", 
+             RowBox[{"step", "++"}], ",", 
+             RowBox[{
+              RowBox[{"r", "=", "0"}], ";", "\[IndentingNewLine]", 
+              RowBox[{"For", "[", 
+               RowBox[{
+                RowBox[{"p", "=", 
+                 RowBox[{
+                  RowBox[{"IntegerLength", "[", "k", "]"}], "+", "1"}]}], ",", 
+                RowBox[{"p", ">=", "1"}], ",", 
+                RowBox[{"p", "--"}], ",", 
+                RowBox[{
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{"r", "==", "1"}], ",", 
+                   RowBox[{"Break", "[", "]"}]}], "]"}], ";", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"For", "[", 
+                  RowBox[{
+                   RowBox[{"d", "=", "0"}], ",", 
+                   RowBox[{"d", "<=", "9"}], ",", 
+                   RowBox[{"d", "++"}], ",", 
+                   RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"PrimeQ", "[", 
+                    RowBox[{"m", "=", 
+                    RowBox[{"ToExpression", "[", 
+                    RowBox[{"StringInsert", "[", 
+                    RowBox[{
+                    RowBox[{"ToString", "[", "k", "]"}], ",", 
+                    RowBox[{"ToString", "[", "d", "]"}], ",", "p"}], "]"}], 
+                    "]"}]}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"k", "!=", "m"}], ",", 
+                    RowBox[{"k", "=", "m"}], ",", 
+                    RowBox[{"powod", "=", "\"\<FINITE\>\""}]}], "]"}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"K", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"step", "+", "1"}], ",", "k"}], "}"}]}], "]"}], 
+                    ";", "\[IndentingNewLine]", 
+                    RowBox[{"r", "=", "1"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"Break", "[", "]"}], ";"}]}], "]"}]}], "]"}]}]}], 
+               "]"}], ";"}]}], "]"}], ";", "\[IndentingNewLine]", "K"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"<|", 
+         RowBox[{
+          RowBox[{"\"\<Czas\>\"", "->", 
+           RowBox[{"czasIwyniki", "[", 
+            RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+          RowBox[{"\"\<WynikFinalny\>\"", "->", "k"}], ",", 
+          RowBox[{"\"\<Status\>\"", "->", "powod"}], ",", 
+          RowBox[{"\"\<Historia\>\"", "->", 
+           RowBox[{"czasIwyniki", "[", 
+            RowBox[{"[", "2", "]"}], "]"}]}]}], "|>"}]}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "=="}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "SYSTEM", " ", "INTERFEJSU", " ", "I", " ", "GENERATORA", " ", 
+     "RAPORT\[CapitalOAcute]W"}], "*)"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "=="}], "*)"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"DynamicModule", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"algorithm", "=", 
+        RowBox[{"{", "\"\<Algorytm Bezkwadratowy\>\"", "}"}]}], ",", 
+       RowBox[{"alphabet", "=", "\"\<a, b, c\>\""}], ",", 
+       RowBox[{"alphabetList", "=", 
+        RowBox[{"{", "}"}]}], ",", 
+       RowBox[{"liczbaIteracji", "=", "20"}], ",", 
+       RowBox[{"wybranyKierunek", "=", "\"\<OdPoczatku\>\""}], ",", 
+       RowBox[{"starterWords", "=", "\"\<a\>\""}], ",", 
+       RowBox[{"starterWordsList", "=", 
+        RowBox[{"{", "}"}]}], ",", 
+       RowBox[{
+       "raport", "=", 
+        "\"\<Skonfiguruj parametry i kliknij 'Generate Report'.\>\""}]}], 
+      "}"}], ",", 
+     RowBox[{"Deploy", "[", 
+      RowBox[{"Style", "[", 
+       RowBox[{"Panel", "[", 
+        RowBox[{"Column", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Grid", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Style", "[", 
+                   RowBox[{"\"\<Wybierz algorytmy:\>\"", ",", "Bold"}], "]"}],
+                   ",", 
+                  RowBox[{"TogglerBar", "[", 
+                   RowBox[{
+                    RowBox[{"Dynamic", "[", "algorithm", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Algorytm Bezkwadratowy\>\"", ",", 
+                    "\"\<Algorytm Prime (Wariant A)\>\"", ",", 
+                    "\"\<Algorytm Prime (Wariant B)\>\""}], "}"}]}], "]"}]}], 
+                 "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Style", "[", 
+                   RowBox[{
+                   "\"\<Alfabet (oddzielony przecinkami):\>\"", ",", "Bold"}],
+                    "]"}], ",", 
+                  RowBox[{"InputField", "[", 
+                   RowBox[{
+                    RowBox[{"Dynamic", "[", "alphabet", "]"}], ",", 
+                    "String"}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Style", "[", 
+                   RowBox[{"\"\<Podgl\:0105d alfabetu:\>\"", ",", "Green"}], 
+                   "]"}], ",", 
+                  RowBox[{"Dynamic", "[", 
+                   RowBox[{"InputForm", "[", 
+                    RowBox[{"alphabetList", "=", 
+                    RowBox[{"StringTrim", "/@", 
+                    RowBox[{"StringSplit", "[", 
+                    RowBox[{"alphabet", ",", "\"\<,\>\""}], "]"}]}]}], "]"}], 
+                   "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Style", "[", 
+                   RowBox[{
+                   "\"\<Liczba iteracji / krok\[OAcute]w:\>\"", ",", "Bold"}],
+                    "]"}], ",", 
+                  RowBox[{"InputField", "[", 
+                   RowBox[{
+                    RowBox[{"Dynamic", "[", "liczbaIteracji", "]"}], ",", 
+                    "Number"}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Style", "[", 
+                   RowBox[{
+                   "\"\<Kierunek (Dla bezkwadratowego):\>\"", ",", "Bold"}], 
+                   "]"}], ",", 
+                  RowBox[{"PopupMenu", "[", 
+                   RowBox[{
+                    RowBox[{"Dynamic", "[", "wybranyKierunek", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<OdPoczatku\>\"", ",", "\"\<OdKonca\>\""}], 
+                    "}"}]}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Style", "[", 
+                   RowBox[{
+                   "\"\<S\[LSlash]owa startowe (rozdzielone \
+przecinkiem):\>\"", ",", "Bold"}], "]"}], ",", 
+                  RowBox[{"InputField", "[", 
+                   RowBox[{
+                    RowBox[{"Dynamic", "[", "starterWords", "]"}], ",", 
+                    "String"}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Style", "[", 
+                   RowBox[{
+                   "\"\<Podgl\:0105d s\[LSlash]\[OAcute]w startowych:\>\"", 
+                    ",", "Green"}], "]"}], ",", 
+                  RowBox[{"Dynamic", "[", 
+                   RowBox[{"InputForm", "[", 
+                    RowBox[{"starterWordsList", "=", 
+                    RowBox[{"StringTrim", "/@", 
+                    RowBox[{"StringSplit", "[", 
+                    RowBox[{"starterWords", ",", "\"\<,\>\""}], "]"}]}]}], 
+                    "]"}], "]"}]}], "}"}]}], "}"}], ",", 
+              RowBox[{"Alignment", "->", "Left"}]}], "]"}], ",", 
+            RowBox[{"Spacer", "[", "15", "]"}], ",", "Delimiter", ",", 
+            RowBox[{"Spacer", "[", "10", "]"}], ",", 
+            RowBox[{"Button", "[", 
+             RowBox[{"\"\<Generate Report\>\"", ",", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"algorithm", "==", 
+                 RowBox[{"{", "}"}]}], ",", 
+                RowBox[{"raport", "=", 
+                 RowBox[{"Style", "[", 
+                  RowBox[{
+                  "\"\<B\[LSlash]\:0105d: Nie wybrano \:017cadnego algorytmu!\
+\>\"", ",", "Red", ",", "Bold"}], "]"}]}], ",", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"starterWordsList", "==", 
+                    RowBox[{"{", "\"\<\>\"", "}"}]}], "||", 
+                   RowBox[{"starterWordsList", "==", 
+                    RowBox[{"{", "}"}]}]}], ",", 
+                  RowBox[{"raport", "=", 
+                   RowBox[{"Style", "[", 
+                    RowBox[{
+                    "\"\<B\[LSlash]\:0105d: Brak s\[LSlash]owa \
+startowego!\>\"", ",", "Red", ",", "Bold"}], "]"}]}], ",", 
+                  RowBox[{"Module", "[", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "tabelaWynikowa", ",", "wynikAlg", ",", "danePlikuCSV", 
+                    ",", "nazwaPlikuCSV", ",", "znacznikCzal"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"tabelaWynikowa", "=", 
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<S\[LSlash]owo Start\>\"", ",", 
+                    "\"\<Wybrany Algorytm\>\"", ",", 
+                    "\"\<Wynik Ko\:0144cowy\>\"", ",", 
+                    "\"\<Czas wykonania\>\"", ",", "\"\<Status\>\""}], "}"}], 
+                    "}"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"Do", "[", 
+                    RowBox[{
+                    RowBox[{"Do", "[", 
+                    RowBox[{
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"(*", 
+                    RowBox[{"--", 
+                    RowBox[{"-", 
+                    RowBox[{"URUCHOMIENIE", ":", 
+                    RowBox[{
+                    RowBox[{"ALGORYTM", " ", 
+                    RowBox[{"BEZKWADRATOWY", "--"}]}], "-"}]}]}]}], "*)"}], 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"alg", "===", "\"\<Algorytm Bezkwadratowy\>\""}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{"wynikAlg", "=", 
+                    RowBox[{"AlgorytmBezkwadratowy", "[", 
+                    RowBox[{
+                    "slowo", ",", "alphabetList", ",", "liczbaIteracji", ",", 
+                    "wybranyKierunek"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"tabelaWynikowa", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"slowo", ",", "alg", ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<WynikFinalny\>\"", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"wynikAlg", "[", "\"\<Czas\>\"", "]"}], "]"}], 
+                    "<>", "\"\< s\>\""}], ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<Status\>\"", "]"}]}], 
+                    "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"znacznikCzasu", "=", 
+                    RowBox[{"DateString", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Year\>\"", ",", "\"\<-\>\"", ",", "\"\<Month\>\"", 
+                    ",", "\"\<-\>\"", ",", "\"\<Day\>\"", ",", "\"\<_\>\"", 
+                    ",", "\"\<Hour\>\"", ",", "\"\<-\>\"", ",", 
+                    "\"\<Minute\>\"", ",", "\"\<-\>\"", ",", 
+                    "\"\<Second\>\""}], "}"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"nazwaPlikuCSV", "=", 
+                    RowBox[{"StringJoin", "[", 
+                    RowBox[{
+                    "znacznikCzasu", ",", "\"\<_Bezkwadratowy_\>\"", ",", 
+                    "slowo", ",", "\"\<_\>\"", ",", "wybranyKierunek", ",", 
+                    "\"\<.csv\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"danePlikuCSV", "=", 
+                    RowBox[{"wynikAlg", "[", "\"\<Historia\>\"", "]"}]}], ";",
+                     "\[IndentingNewLine]", 
+                    RowBox[{"Do", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"danePlikuCSV", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"i", ",", "2"}], "]"}], "]"}], "=", 
+                    RowBox[{"\"\<\\\"\>\"", "<>", 
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"danePlikuCSV", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"i", ",", "2"}], "]"}], "]"}], "]"}], "<>", 
+                    "\"\<\\\"\>\""}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", "2", ",", 
+                    RowBox[{"Length", "[", "danePlikuCSV", "]"}]}], "}"}]}], 
+                    "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<\>\"", ",", "\"\<\>\"", ",", "\"\<\>\""}], 
+                    "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Status zakonczenia:\>\"", ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<Status\>\"", "]"}], ",", 
+                    "\"\<\>\""}], "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Kierunek:\>\"", ",", "wybranyKierunek", ",", 
+                    "\"\<\>\""}], "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Czas wykonania (s):\>\"", ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<Czas\>\"", "]"}], ",", 
+                    "\"\<\>\""}], "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"Export", "[", 
+                    RowBox[{
+                    RowBox[{"FileNameJoin", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+                    "nazwaPlikuCSV"}], "}"}], "]"}], ",", 
+                    RowBox[{"Prepend", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", "\"\<sep=,\>\"", "}"}]}], "]"}], ",", 
+                    "\"\<CSV\>\"", ",", 
+                    RowBox[{"\"\<ItemSeparators\>\"", "->", "\"\<,\>\""}], 
+                    ",", 
+                    RowBox[{
+                    "\"\<TextDelimiters\>\"", "->", "\"\<\\\"\>\""}]}], 
+                    "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"(*", 
+                    RowBox[{"--", 
+                    RowBox[{"-", 
+                    RowBox[{"URUCHOMIENIE", ":", 
+                    RowBox[{
+                    RowBox[{"ALGORYTM", " ", "PRIME", " ", 
+                    RowBox[{"A", "--"}]}], "-"}]}]}]}], "*)"}], 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "alg", "===", "\"\<Algorytm Prime (Wariant A)\>\""}], ",", 
+                    RowBox[{
+                    RowBox[{"wynikAlg", "=", 
+                    RowBox[{"AlgorytmPrimeA", "[", 
+                    RowBox[{
+                    "liczbaIteracji", ",", "alphabetList", ",", "slowo"}], 
+                    "]"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"tabelaWynikowa", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"slowo", ",", "alg", ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<WynikFinalny\>\"", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"wynikAlg", "[", "\"\<Czas\>\"", "]"}], "]"}], 
+                    "<>", "\"\< s\>\""}], ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<Status\>\"", "]"}]}], 
+                    "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"znacznikCzasu", "=", 
+                    RowBox[{"DateString", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Year\>\"", ",", "\"\<-\>\"", ",", "\"\<Month\>\"", 
+                    ",", "\"\<-\>\"", ",", "\"\<Day\>\"", ",", "\"\<_\>\"", 
+                    ",", "\"\<Hour\>\"", ",", "\"\<-\>\"", ",", 
+                    "\"\<Minute\>\"", ",", "\"\<-\>\"", ",", 
+                    "\"\<Second\>\""}], "}"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"nazwaPlikuCSV", "=", 
+                    RowBox[{"StringJoin", "[", 
+                    RowBox[{
+                    "znacznikCzasu", ",", "\"\<_Prime_WariantA_\>\"", ",", 
+                    "slowo", ",", "\"\<.csv\>\""}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"danePlikuCSV", "=", 
+                    RowBox[{"wynikAlg", "[", "\"\<Historia\>\"", "]"}]}], ";",
+                     "\[IndentingNewLine]", 
+                    RowBox[{"PrependTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Krok\>\"", ",", "\"\<WygenerowanaLiczba\>\""}], 
+                    "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<\>\"", ",", "\"\<\>\""}], "}"}]}], "]"}], 
+                    ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Status zakonczenia:\>\"", ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<Status\>\"", "]"}]}], 
+                    "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Czas wykonania (s):\>\"", ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<Czas\>\"", "]"}]}], "}"}]}],
+                     "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"Export", "[", 
+                    RowBox[{
+                    RowBox[{"FileNameJoin", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+                    "nazwaPlikuCSV"}], "}"}], "]"}], ",", 
+                    RowBox[{"Prepend", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", "\"\<sep=,\>\"", "}"}]}], "]"}], ",", 
+                    "\"\<CSV\>\"", ",", 
+                    RowBox[{"\"\<ItemSeparators\>\"", "->", "\"\<,\>\""}], 
+                    ",", 
+                    RowBox[{
+                    "\"\<TextDelimiters\>\"", "->", "\"\<\\\"\>\""}]}], 
+                    "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"(*", 
+                    RowBox[{"--", 
+                    RowBox[{"-", 
+                    RowBox[{"URUCHOMIENIE", ":", 
+                    RowBox[{
+                    RowBox[{"ALGORYTM", " ", "PRIME", " ", 
+                    RowBox[{"B", "--"}]}], "-"}]}]}]}], "*)"}], 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "alg", "===", "\"\<Algorytm Prime (Wariant B)\>\""}], ",", 
+                    RowBox[{
+                    RowBox[{"wynikAlg", "=", 
+                    RowBox[{"AlgorytmPrimeB", "[", 
+                    RowBox[{"liczbaIteracji", ",", "slowo"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"tabelaWynikowa", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"slowo", ",", "alg", ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<WynikFinalny\>\"", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"wynikAlg", "[", "\"\<Czas\>\"", "]"}], "]"}], 
+                    "<>", "\"\< s\>\""}], ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<Status\>\"", "]"}]}], 
+                    "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"znacznikCzasu", "=", 
+                    RowBox[{"DateString", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Year\>\"", ",", "\"\<-\>\"", ",", "\"\<Month\>\"", 
+                    ",", "\"\<-\>\"", ",", "\"\<Day\>\"", ",", "\"\<_\>\"", 
+                    ",", "\"\<Hour\>\"", ",", "\"\<-\>\"", ",", 
+                    "\"\<Minute\>\"", ",", "\"\<-\>\"", ",", 
+                    "\"\<Second\>\""}], "}"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"nazwaPlikuCSV", "=", 
+                    RowBox[{"StringJoin", "[", 
+                    RowBox[{
+                    "znacznikCzasu", ",", "\"\<_Prime_WariantB_\>\"", ",", 
+                    "slowo", ",", "\"\<.csv\>\""}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"danePlikuCSV", "=", 
+                    RowBox[{"wynikAlg", "[", "\"\<Historia\>\"", "]"}]}], ";",
+                     "\[IndentingNewLine]", 
+                    RowBox[{"PrependTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Krok\>\"", ",", "\"\<WygenerowanaLiczba\>\""}], 
+                    "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<\>\"", ",", "\"\<\>\""}], "}"}]}], "]"}], 
+                    ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Status zakonczenia:\>\"", ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<Status\>\"", "]"}]}], 
+                    "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Czas wykonania (s):\>\"", ",", 
+                    RowBox[{"wynikAlg", "[", "\"\<Czas\>\"", "]"}]}], "}"}]}],
+                     "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"Export", "[", 
+                    RowBox[{
+                    RowBox[{"FileNameJoin", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+                    "nazwaPlikuCSV"}], "}"}], "]"}], ",", 
+                    RowBox[{"Prepend", "[", 
+                    RowBox[{"danePlikuCSV", ",", 
+                    RowBox[{"{", "\"\<sep=,\>\"", "}"}]}], "]"}], ",", 
+                    "\"\<CSV\>\"", ",", 
+                    RowBox[{"\"\<ItemSeparators\>\"", "->", "\"\<,\>\""}], 
+                    ",", 
+                    RowBox[{
+                    "\"\<TextDelimiters\>\"", "->", "\"\<\\\"\>\""}]}], 
+                    "]"}]}]}], "]"}], ";"}]}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"alg", ",", "algorithm"}], "}"}]}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"slowo", ",", "starterWordsList"}], "}"}]}], 
+                    "]"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"raport", "=", 
+                    RowBox[{"Panel", "[", 
+                    RowBox[{
+                    RowBox[{"Column", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{
+                    "\"\<RAPORT GENEROWANIA DANYCH\>\"", ",", 
+                    "\"\<Section\>\"", ",", "14", ",", 
+                    RowBox[{"Darker", "[", "Green", "]"}]}], "]"}], ",", 
+                    RowBox[{"Grid", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Wybrane algorytmy:\>\"", ",", 
+                    RowBox[{"Row", "[", 
+                    RowBox[{"algorithm", ",", "\"\< | \>\""}], "]"}]}], "}"}],
+                     ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<U\:017cyty alfabet:\>\"", ",", 
+                    RowBox[{"Row", "[", 
+                    RowBox[{"alphabetList", ",", "\"\<, \>\""}], "]"}]}], 
+                    "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<S\[LSlash]owa startowe:\>\"", ",", 
+                    RowBox[{"Row", "[", 
+                    RowBox[{"starterWordsList", ",", "\"\<, \>\""}], "]"}]}], 
+                    "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Limit iteracji:\>\"", ",", "liczbaIteracji"}], "}"}],
+                     ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<\:015acie\:017cka zapisu plik\[OAcute]w CSV:\>\"", 
+                    ",", 
+                    RowBox[{"Style", "[", 
+                    RowBox[{
+                    RowBox[{"NotebookDirectory", "[", "]"}], ",", "Italic"}], 
+                    "]"}]}], "}"}]}], "}"}], ",", 
+                    RowBox[{"Alignment", "->", "Left"}]}], "]"}], ",", 
+                    RowBox[{"Spacer", "[", "10", "]"}], ",", "Delimiter", ",", 
+                    RowBox[{"Spacer", "[", "10", "]"}], ",", 
+                    RowBox[{"Style", "[", 
+                    RowBox[{
+                    "\"\<Macierz wynik\[OAcute]w i czasu wykonania:\>\"", 
+                    ",", "\"\<Subsection\>\""}], "]"}], ",", 
+                    RowBox[{"Spacer", "[", "5", "]"}], ",", 
+                    RowBox[{"Grid", "[", 
+                    RowBox[{"tabelaWynikowa", ",", 
+                    RowBox[{"Frame", "->", "All"}], ",", 
+                    RowBox[{"FrameStyle", "->", 
+                    RowBox[{"GrayLevel", "[", "0.8", "]"}]}], ",", 
+                    RowBox[{"Background", "->", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"LightGray", ",", "None"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"LightGray", ",", "None"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1"}], "}"}], "->", "LightGreen"}], 
+                    "}"}]}], "}"}]}], ",", 
+                    RowBox[{"Alignment", "->", "Center"}], ",", 
+                    RowBox[{"ItemSize", "->", "Automatic"}]}], "]"}]}], "}"}],
+                     "]"}], ",", 
+                    RowBox[{"Background", "->", 
+                    RowBox[{"GrayLevel", "[", "0.96", "]"}]}], ",", 
+                    RowBox[{"ImageSize", "->", "Automatic"}]}], "]"}]}]}]}], 
+                   "]"}]}], "]"}]}], "]"}], ",", 
+              RowBox[{"Method", "->", "\"\<Queued\>\""}]}], "]"}], ",", 
+            RowBox[{"Spacer", "[", "15", "]"}], ",", "Delimiter", ",", 
+            RowBox[{"Spacer", "[", "10", "]"}], ",", 
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Monitor wyj\:015bciowy raportu:\>\"", ",", "Bold"}],
+              "]"}], ",", 
+            RowBox[{"Spacer", "[", "5", "]"}], ",", 
+            RowBox[{"Dynamic", "[", "raport", "]"}]}], "}"}], ",", "Left"}], 
+         "]"}], "]"}], "]"}], "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.9905346990977306`*^9, 3.990534699098647*^9}, {
+  3.9905351501791096`*^9, 3.990535193611541*^9}, {3.9905352528416634`*^9, 
+  3.990535255059379*^9}, {3.9905357807419124`*^9, 3.990535861043027*^9}, {
+  3.9905360088281374`*^9, 3.990536029107113*^9}, {3.990536123800291*^9, 
+  3.9905361327385283`*^9}, {3.990536309224352*^9, 3.990536377697006*^9}, {
+  3.990539770913172*^9, 3.990539826357922*^9}, {3.9905399075579863`*^9, 
+  3.9905399098427644`*^9}, {3.9905400786202507`*^9, 3.990540079932351*^9}, {
+  3.990540145282538*^9, 3.9905401533909874`*^9}},
+ CellLabel->
+  "In[103]:=",ExpressionUUID->"00e17dc1-f8fd-4681-8f91-554a0c1b0214"],
+
+Cell[BoxData[
+ DynamicModuleBox[{$CellContext`algorithm$$ = {
+  "Algorytm Bezkwadratowy"}, $CellContext`alphabet$$ = 
+  "a, b, c", $CellContext`alphabetList$$ = {
+  "a", "b", "c"}, $CellContext`liczbaIteracji$$ = 
+  20, $CellContext`wybranyKierunek$$ = 
+  "OdKonca", $CellContext`starterWords$$ = 
+  "a", $CellContext`starterWordsList$$ = {"a"}, $CellContext`raport$$ = Panel[
+   Column[{
+     Style["RAPORT GENEROWANIA DANYCH", "Section", 14, 
+      RGBColor[0, 
+       Rational[2, 3], 0]], 
+     Grid[{{"Wybrane algorytmy:", 
+        Row[{"Algorytm Bezkwadratowy"}, " | "]}, {"U\:017cyty alfabet:", 
+        Row[{"a", "b", "c"}, ", "]}, {"S\[LSlash]owa startowe:", 
+        Row[{"a"}, ", "]}, {"Limit iteracji:", 20}, {
+       "\:015acie\:017cka zapisu plik\[OAcute]w CSV:", 
+        Style["C:\\Users\\grazi\\Downloads\\", Italic]}}, Alignment -> Left], 
+     Spacer[10], Delimiter, 
+     Spacer[10], 
+     Style["Macierz wynik\[OAcute]w i czasu wykonania:", "Subsection"], 
+     Spacer[5], 
+     Grid[{{
+       "S\[LSlash]owo Start", "Wybrany Algorytm", "Wynik Ko\:0144cowy", 
+        "Czas wykonania", "Status"}, {
+       "a", "Algorytm Bezkwadratowy", "abacabcacbabcabacabca", "0.0006931 s", 
+        "Osiagnieto limit iteracji"}}, Frame -> All, FrameStyle -> 
+      GrayLevel[0.8], Background -> {{
+         GrayLevel[0.85], None}, {
+         GrayLevel[0.85], None}, {{1, 1} -> RGBColor[0.88, 1, 0.88]}}, 
+      Alignment -> Center, ItemSize -> Automatic]}], Background -> 
+   GrayLevel[0.96], ImageSize -> Automatic]}, 
+  TagBox[
+   PanelBox[
+    TagBox[GridBox[{
+       {
+        TagBox[GridBox[{
+           {
+            StyleBox["\<\"Wybierz algorytmy:\"\>",
+             StripOnInput->False,
+             FontWeight->Bold], 
+            InterpretationBox[
+             StyleBox[GridBox[{
+                {
+                 SetterBox[Dynamic[
+                   
+                   MemberQ[$CellContext`algorithm$$, 
+                    "Algorytm Bezkwadratowy"], 
+                   BoxForm`TogglerBarFunction[$CellContext`algorithm$$, 
+                    "Algorytm Bezkwadratowy"]& ], {
+                  True}, "\<\"Algorytm Bezkwadratowy\"\>"], 
+                 SetterBox[Dynamic[
+                   
+                   MemberQ[$CellContext`algorithm$$, 
+                    "Algorytm Prime (Wariant A)"], 
+                   BoxForm`TogglerBarFunction[$CellContext`algorithm$$, 
+                    "Algorytm Prime (Wariant A)"]& ], {
+                  True}, "\<\"Algorytm Prime (Wariant A)\"\>"], 
+                 SetterBox[Dynamic[
+                   
+                   MemberQ[$CellContext`algorithm$$, 
+                    "Algorytm Prime (Wariant B)"], 
+                   BoxForm`TogglerBarFunction[$CellContext`algorithm$$, 
+                    "Algorytm Prime (Wariant B)"]& ], {
+                  True}, "\<\"Algorytm Prime (Wariant B)\"\>"]}
+               },
+               BaselinePosition->{1, 1},
+               GridBoxSpacings->{"Columns" -> {
+                   Offset[0.27999999999999997`], {
+                    Offset[0.]}, 
+                   Offset[0.27999999999999997`]}, "Rows" -> {
+                   Offset[0.2], {
+                    Offset[0.4]}, 
+                   Offset[0.2]}}],
+              Deployed->True],
+             TogglerBar[
+              Dynamic[$CellContext`algorithm$$], {
+              "Algorytm Bezkwadratowy", "Algorytm Prime (Wariant A)", 
+               "Algorytm Prime (Wariant B)"}]]},
+           {
+            StyleBox["\<\"Alfabet (oddzielony przecinkami):\"\>",
+             StripOnInput->False,
+             FontWeight->Bold], 
+            InputFieldBox[Dynamic[$CellContext`alphabet$$], String]},
+           {
+            StyleBox["\<\"Podgl\:0105d alfabetu:\"\>",
+             StripOnInput->False,
+             LineColor->RGBColor[0, 1, 0],
+             FrontFaceColor->RGBColor[0, 1, 0],
+             BackFaceColor->RGBColor[0, 1, 0],
+             GraphicsColor->RGBColor[0, 1, 0],
+             FontColor->RGBColor[0, 1, 0]], 
+            DynamicBox[ToBoxes[
+              InputForm[$CellContext`alphabetList$$ = Map[StringTrim, 
+                 StringSplit[$CellContext`alphabet$$, ","]]], StandardForm],
+             ImageSizeCache->{54.18239355468751, {3.0078125, 7.15234375}}]},
+           {
+            StyleBox["\<\"Liczba iteracji / krok\[OAcute]w:\"\>",
+             StripOnInput->False,
+             FontWeight->Bold], 
+            InputFieldBox[Dynamic[$CellContext`liczbaIteracji$$], Number]},
+           {
+            StyleBox["\<\"Kierunek (Dla bezkwadratowego):\"\>",
+             StripOnInput->False,
+             FontWeight->Bold], 
+            
+            PopupMenuBox[Dynamic[$CellContext`wybranyKierunek$$], {
+             "OdPoczatku"->"\<\"OdPoczatku\"\>", 
+             "OdKonca"->"\<\"OdKonca\"\>"}]},
+           {
+            
+            StyleBox["\<\"S\[LSlash]owa startowe (rozdzielone przecinkiem):\"\
+\>",
+             StripOnInput->False,
+             FontWeight->Bold], 
+            InputFieldBox[Dynamic[$CellContext`starterWords$$], String]},
+           {
+            StyleBox["\<\"Podgl\:0105d s\[LSlash]\[OAcute]w startowych:\"\>",
+             StripOnInput->False,
+             LineColor->RGBColor[0, 1, 0],
+             FrontFaceColor->RGBColor[0, 1, 0],
+             BackFaceColor->RGBColor[0, 1, 0],
+             GraphicsColor->RGBColor[0, 1, 0],
+             FontColor->RGBColor[0, 1, 0]], 
+            DynamicBox[ToBoxes[
+              InputForm[$CellContext`starterWordsList$$ = Map[StringTrim, 
+                 StringSplit[$CellContext`starterWords$$, ","]]], 
+              StandardForm],
+             ImageSizeCache->{17.14453125, {3.0078125, 7.15234375}}]}
+          },
+          AutoDelete->False,
+          GridBoxAlignment->{"Columns" -> {{Left}}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+         "Grid"]},
+       {
+        TemplateBox[{15},
+         "Spacer1"]},
+       {"Delimiter"},
+       {
+        TemplateBox[{10},
+         "Spacer1"]},
+       {
+        ButtonBox["\<\"Generate Report\"\>",
+         Appearance->Automatic,
+         ButtonFunction:>
+          If[$CellContext`algorithm$$ == {}, $CellContext`raport$$ = 
+           Style["B\[LSlash]\:0105d: Nie wybrano \:017cadnego algorytmu!", 
+             Red, Bold], 
+           If[
+            
+            Or[$CellContext`starterWordsList$$ == {
+              ""}, $CellContext`starterWordsList$$ == {}], \
+$CellContext`raport$$ = 
+            Style["B\[LSlash]\:0105d: Brak s\[LSlash]owa startowego!", Red, 
+              Bold], 
+            
+            Module[{$CellContext`tabelaWynikowa$, $CellContext`wynikAlg$, \
+$CellContext`danePlikuCSV$, $CellContext`nazwaPlikuCSV$, \
+$CellContext`znacznikCzal$}, $CellContext`tabelaWynikowa$ = {{
+                "S\[LSlash]owo Start", "Wybrany Algorytm", 
+                 "Wynik Ko\:0144cowy", "Czas wykonania", "Status"}}; Do[
+               Do[
+                
+                Block[{}, 
+                 If[$CellContext`alg === 
+                   "Algorytm Bezkwadratowy", $CellContext`wynikAlg$ = \
+$CellContext`AlgorytmBezkwadratowy[$CellContext`slowo, \
+$CellContext`alphabetList$$, $CellContext`liczbaIteracji$$, \
+$CellContext`wybranyKierunek$$]; 
+                   AppendTo[$CellContext`tabelaWynikowa$, \
+{$CellContext`slowo, $CellContext`alg, 
+                    $CellContext`wynikAlg$["WynikFinalny"], ToString[
+                    $CellContext`wynikAlg$["Czas"]] <> " s", 
+                    $CellContext`wynikAlg$[
+                    "Status"]}]; $CellContext`znacznikCzasu = 
+                    DateString[{
+                    "Year", "-", "Month", "-", "Day", "_", "Hour", "-", 
+                    "Minute", "-", 
+                    "Second"}]; $CellContext`nazwaPlikuCSV$ = \
+$CellContext`znacznikCzasu <> "_Bezkwadratowy_" <> $CellContext`slowo <> 
+                    "_" <> $CellContext`wybranyKierunek$$ <> 
+                    ".csv"; $CellContext`danePlikuCSV$ = \
+$CellContext`wynikAlg$["Historia"]; 
+                   Do[Part[$CellContext`danePlikuCSV$, $CellContext`i, 2] = 
+                    "\"" <> ToString[
+                    Part[$CellContext`danePlikuCSV$, $CellContext`i, 2]] <> 
+                    "\"", {$CellContext`i, 2, 
+                    Length[$CellContext`danePlikuCSV$]}]; 
+                   AppendTo[$CellContext`danePlikuCSV$, {"", "", ""}]; 
+                   AppendTo[$CellContext`danePlikuCSV$, {
+                    "Status zakonczenia:", 
+                    $CellContext`wynikAlg$["Status"], ""}]; 
+                   AppendTo[$CellContext`danePlikuCSV$, {
+                    "Kierunek:", $CellContext`wybranyKierunek$$, ""}]; 
+                   AppendTo[$CellContext`danePlikuCSV$, {
+                    "Czas wykonania (s):", 
+                    $CellContext`wynikAlg$["Czas"], ""}]; Export[
+                    FileNameJoin[{
+                    NotebookDirectory[], $CellContext`nazwaPlikuCSV$}], 
+                    Prepend[$CellContext`danePlikuCSV$, {"sep=,"}], "CSV", 
+                    "ItemSeparators" -> ",", "TextDelimiters" -> "\""]]; 
+                 If[$CellContext`alg === 
+                   "Algorytm Prime (Wariant A)", $CellContext`wynikAlg$ = \
+$CellContext`AlgorytmPrimeA[$CellContext`liczbaIteracji$$, \
+$CellContext`alphabetList$$, $CellContext`slowo]; 
+                   AppendTo[$CellContext`tabelaWynikowa$, \
+{$CellContext`slowo, $CellContext`alg, 
+                    $CellContext`wynikAlg$["WynikFinalny"], ToString[
+                    $CellContext`wynikAlg$["Czas"]] <> " s", 
+                    $CellContext`wynikAlg$[
+                    "Status"]}]; $CellContext`znacznikCzasu = 
+                    DateString[{
+                    "Year", "-", "Month", "-", "Day", "_", "Hour", "-", 
+                    "Minute", "-", 
+                    "Second"}]; $CellContext`nazwaPlikuCSV$ = \
+$CellContext`znacznikCzasu <> "_Prime_WariantA_" <> $CellContext`slowo <> 
+                    ".csv"; $CellContext`danePlikuCSV$ = \
+$CellContext`wynikAlg$["Historia"]; 
+                   PrependTo[$CellContext`danePlikuCSV$, {
+                    "Krok", "WygenerowanaLiczba"}]; 
+                   AppendTo[$CellContext`danePlikuCSV$, {"", ""}]; 
+                   AppendTo[$CellContext`danePlikuCSV$, {
+                    "Status zakonczenia:", 
+                    $CellContext`wynikAlg$["Status"]}]; 
+                   AppendTo[$CellContext`danePlikuCSV$, {
+                    "Czas wykonania (s):", 
+                    $CellContext`wynikAlg$["Czas"]}]; Export[
+                    FileNameJoin[{
+                    NotebookDirectory[], $CellContext`nazwaPlikuCSV$}], 
+                    Prepend[$CellContext`danePlikuCSV$, {"sep=,"}], "CSV", 
+                    "ItemSeparators" -> ",", "TextDelimiters" -> "\""]]; 
+                 If[$CellContext`alg === 
+                   "Algorytm Prime (Wariant B)", $CellContext`wynikAlg$ = \
+$CellContext`AlgorytmPrimeB[$CellContext`liczbaIteracji$$, \
+$CellContext`slowo]; 
+                   AppendTo[$CellContext`tabelaWynikowa$, \
+{$CellContext`slowo, $CellContext`alg, 
+                    $CellContext`wynikAlg$["WynikFinalny"], ToString[
+                    $CellContext`wynikAlg$["Czas"]] <> " s", 
+                    $CellContext`wynikAlg$[
+                    "Status"]}]; $CellContext`znacznikCzasu = 
+                    DateString[{
+                    "Year", "-", "Month", "-", "Day", "_", "Hour", "-", 
+                    "Minute", "-", 
+                    "Second"}]; $CellContext`nazwaPlikuCSV$ = \
+$CellContext`znacznikCzasu <> "_Prime_WariantB_" <> $CellContext`slowo <> 
+                    ".csv"; $CellContext`danePlikuCSV$ = \
+$CellContext`wynikAlg$["Historia"]; 
+                   PrependTo[$CellContext`danePlikuCSV$, {
+                    "Krok", "WygenerowanaLiczba"}]; 
+                   AppendTo[$CellContext`danePlikuCSV$, {"", ""}]; 
+                   AppendTo[$CellContext`danePlikuCSV$, {
+                    "Status zakonczenia:", 
+                    $CellContext`wynikAlg$["Status"]}]; 
+                   AppendTo[$CellContext`danePlikuCSV$, {
+                    "Czas wykonania (s):", 
+                    $CellContext`wynikAlg$["Czas"]}]; Export[
+                    FileNameJoin[{
+                    NotebookDirectory[], $CellContext`nazwaPlikuCSV$}], 
+                    Prepend[$CellContext`danePlikuCSV$, {"sep=,"}], "CSV", 
+                    "ItemSeparators" -> ",", "TextDelimiters" -> "\""]]; 
+                 Null], {$CellContext`alg, $CellContext`algorithm$$}], \
+{$CellContext`slowo, $CellContext`starterWordsList$$}]; $CellContext`raport$$ = 
+              Panel[
+                Column[{
+                  Style["RAPORT GENEROWANIA DANYCH", "Section", 14, 
+                   Darker[Green]], 
+                  Grid[{{"Wybrane algorytmy:", 
+                    Row[$CellContext`algorithm$$, " | "]}, {
+                    "U\:017cyty alfabet:", 
+                    Row[$CellContext`alphabetList$$, ", "]}, {
+                    "S\[LSlash]owa startowe:", 
+                    Row[$CellContext`starterWordsList$$, ", "]}, {
+                    "Limit iteracji:", $CellContext`liczbaIteracji$$}, {
+                    "\:015acie\:017cka zapisu plik\[OAcute]w CSV:", 
+                    Style[
+                    NotebookDirectory[], Italic]}}, Alignment -> Left], 
+                  Spacer[10], Delimiter, 
+                  Spacer[10], 
+                  Style[
+                  "Macierz wynik\[OAcute]w i czasu wykonania:", "Subsection"], 
+                  Spacer[5], 
+                  
+                  Grid[$CellContext`tabelaWynikowa$, Frame -> All, FrameStyle -> 
+                   GrayLevel[0.8], 
+                   Background -> {{LightGray, None}, {
+                    LightGray, None}, {{1, 1} -> LightGreen}}, Alignment -> 
+                   Center, ItemSize -> Automatic]}], Background -> 
+                GrayLevel[0.96], ImageSize -> Automatic]]]],
+         Evaluator->Automatic,
+         Method->"Queued"]},
+       {
+        TemplateBox[{15},
+         "Spacer1"]},
+       {"Delimiter"},
+       {
+        TemplateBox[{10},
+         "Spacer1"]},
+       {
+        StyleBox["\<\"Monitor wyj\:015bciowy raportu:\"\>",
+         StripOnInput->False,
+         FontWeight->Bold]},
+       {
+        TemplateBox[{5},
+         "Spacer1"]},
+       {
+        DynamicBox[ToBoxes[$CellContext`raport$$, StandardForm],
+         ImageSizeCache->{430., {99.43359375, 103.56640625}}]}
+      },
+      DefaultBaseStyle->"Column",
+      GridBoxAlignment->{"Columns" -> {{Left}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+     "Column"]],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  DynamicModuleValues:>{}]], "Output",
+ CellChangeTimes->{
+  3.990535194465231*^9, 3.9905352559265313`*^9, 3.990535861986063*^9, 
+   3.9905360335887356`*^9, 3.990536135916746*^9, {3.990536329417696*^9, 
+   3.9905363486391754`*^9}, 3.9905363795817823`*^9, 3.9905398304410954`*^9, 
+   3.990540013373501*^9, 3.9905400812796483`*^9, 3.990540155169532*^9},
+ CellLabel->
+  "Out[106]=",ExpressionUUID->"89fdb99c-4c80-42d8-a8b8-47967333f5e6"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{
+  3.990533338422436*^9},ExpressionUUID->"f1f8ece6-0181-4750-b296-\
+92246f895820"]
+},
+WindowSize->{1109., 626.5},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (August 22, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"76e4d9ca-01cd-4ac2-a301-1776379e4013"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 42368, 913, 3683, "Input",ExpressionUUID->"00e17dc1-f8fd-4681-8f91-554a0c1b0214"],
+Cell[42951, 937, 15180, 324, 527, "Output",ExpressionUUID->"89fdb99c-4c80-42d8-a8b8-47967333f5e6"]
+}, Open  ]],
+Cell[58146, 1264, 128, 3, 28, "Input",ExpressionUUID->"f1f8ece6-0181-4750-b296-92246f895820"]
+}
+]
+*)
+

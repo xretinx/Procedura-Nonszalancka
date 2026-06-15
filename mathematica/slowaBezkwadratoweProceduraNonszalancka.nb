@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     16945,        418]
-NotebookOptionsPosition[     16319,        398]
-NotebookOutlinePosition[     16729,        414]
-CellTagsIndexPosition[     16686,        411]
+NotebookDataLength[     17023,        426]
+NotebookOptionsPosition[     16406,        406]
+NotebookOutlinePosition[     16807,        422]
+CellTagsIndexPosition[     16764,        419]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -33,8 +33,8 @@ Cell[BoxData[
    RowBox[{"WYB\[CapitalOAcute]R", " ", 
     RowBox[{"KIERUNKU", ":", 
      RowBox[{
-     "wpisz", " ", "\"\<OdPoczatku\>\"", " ", "lub", 
-      " ", "\"\<OdKonca\>\""}]}]}], "*)"}], "\[IndentingNewLine]", 
+     "wpisz", " ", "\"\<OdPoczatku\>\"", " ", "lub", " ", 
+      "\"\<OdKonca\>\""}]}]}], "*)"}], "\[IndentingNewLine]", 
   RowBox[{
    RowBox[{
     RowBox[{"wybranyKierunek", "=", "\"\<OdPoczatku\>\""}], ";"}], 
@@ -59,8 +59,8 @@ Cell[BoxData[
       RowBox[{
        RowBox[{"razem", " ", "b\:0119dzie", " ", "1"}], "+", 
        "liczbaIteracji"}], ")"}], " ", "o", " ", "ile", " ", "nie", " ", 
-     "zostanie", " ", "wcze\:015bniej", " ", "przerwane"}], "*)"}], "\n", 
-   "\[IndentingNewLine]", 
+     "zostanie", " ", "wcze\:015bniej", " ", "przerwane"}], "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{"===", "===", "===", "===", "===", "===", 
      RowBox[{"==", 
@@ -70,19 +70,20 @@ Cell[BoxData[
    RowBox[{"(*", 
     RowBox[{
     "Weryfikacja", " ", "oparta", " ", "na", " ", "wzorcach", " ", 
-     "tekstowych"}], "*)"}], "\[IndentingNewLine]", 
+     "tekstowych"}], "*)"}], "\n", 
    RowBox[{
     RowBox[{
      RowBox[{"SprawdzajBezkwadratowoscQ", "[", "tekst_", "]"}], ":=", 
      RowBox[{"StringFreeQ", "[", 
       RowBox[{"tekst", ",", 
        RowBox[{"x__", "~~", "x__"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", "\n", 
+   "\n", "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{"===", "===", "===", "===", "===", "===", 
      RowBox[{"==", 
       RowBox[{"AKTYWNE", " ", "FUNKCJE", " ", "SZUKAJ\:0104CE"}]}], "===", "===",
-      "===", "===", "===", "===", "=="}], "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "===", "===", "===", "===", "=="}], "*)"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
      RowBox[{"ZnajdzRozszerzenieSlowaOdPoczatku", "[", 
@@ -112,7 +113,8 @@ Cell[BoxData[
               "1"}]}], "}"}], ",", 
            RowBox[{"{", 
             RowBox[{"litera", ",", "alfabet"}], "}"}]}], "]"}], ";", 
-         "\[IndentingNewLine]", "$Failed"}]}], "]"}], "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", "$Failed"}]}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
    RowBox[{
     RowBox[{
      RowBox[{"ZnajdzRozszerzenieSlowaOdKonca", "[", 
@@ -149,11 +151,12 @@ Cell[BoxData[
          RowBox[{
          "gdy", " ", "p\:0119tla", " ", "przejdzie", " ", "ca\[LSlash]e", " ",
            "s\[LSlash]owo", " ", "bez", " ", "sukcesu"}]}], "*)"}], "]"}], 
-      "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", 
     RowBox[{
     "Dynamiczne", " ", "podstawienie", " ", "wybranej", " ", "funkcji", " ", 
-     "na", " ", "\:017c\:0105danie", " ", "u\:017cytkownika"}], "*)"}], "\n", 
+     "na", " ", "\:017c\:0105danie", " ", "u\:017cytkownika"}], "*)"}], 
+   "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
      RowBox[{"WykonajRozszerzenie", "[", 
@@ -165,7 +168,7 @@ Cell[BoxData[
         RowBox[{"slowo", ",", "alf"}], "]"}], ",", 
        RowBox[{"ZnajdzRozszerzenieSlowaOdKonca", "[", 
         RowBox[{"slowo", ",", "alf"}], "]"}]}], "]"}]}], ";"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", "\n", 
+   "\[IndentingNewLine]", "\n", "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{"===", "===", "===", "===", "===", "===", 
      RowBox[{"==", 
@@ -177,7 +180,7 @@ Cell[BoxData[
       RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\n", 
    RowBox[{
     RowBox[{"powodZakonczenia", "=", "\"\<Osiagnieto limit iteracji\>\""}], 
-    ";"}], "\n", "\[IndentingNewLine]", 
+    ";"}], "\[IndentingNewLine]", "\n", 
    RowBox[{
     RowBox[{"czasIwynikiAlgorytmu", "=", 
      RowBox[{"AbsoluteTiming", "[", 
@@ -193,9 +196,9 @@ Cell[BoxData[
          RowBox[{"tabelaDanychCSV", "=", 
           RowBox[{"{", 
            RowBox[{"{", 
-            
-            RowBox[{"\"\<DlugoscSlowa\>\"", ",", "\"\<SlowoBezKwadratow\>\"", 
-             ",", "\"\<ParametrPrzesuniecia\>\""}], "}"}], "}"}]}], ";", 
+            RowBox[{
+            "\"\<DlugoscSlowa\>\"", ",", "\"\<SlowoBezKwadratow\>\"", ",", 
+             "\"\<ParametrPrzesuniecia\>\""}], "}"}], "}"}]}], ";", 
          "\[IndentingNewLine]", 
          RowBox[{"If", "[", 
           RowBox[{
@@ -227,9 +230,9 @@ Cell[BoxData[
               RowBox[{"rezultatRozszerzenia", "===", "$Failed"}], ",", 
               RowBox[{
                RowBox[{
-               "powodZakonczenia", 
-                "=", "\"\<Algorytm utknal - brak mozliwosci dalszego \
-rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]", 
+               "powodZakonczenia", "=", 
+                "\"\<Algorytm utknal - brak mozliwosci dalszego rozszerzenia \
+slowa\>\""}], ";", "\[IndentingNewLine]", 
                RowBox[{"Print", "[", 
                 RowBox[{
                 "powodZakonczenia", ",", "\"\< na kroku \>\"", ",", 
@@ -254,14 +257,14 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
             "\[IndentingNewLine]", 
             RowBox[{"numerKroku", "++"}], ";"}]}], "]"}], ";", 
          "\[IndentingNewLine]", "tabelaDanychCSV"}]}], "]"}], "]"}]}], ";"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", " ", 
     RowBox[{"===", "===", "===", "===", "===", "===", 
      RowBox[{"==", 
       RowBox[{
       "PRZYGOTOWANIE", " ", "WYNIK\[CapitalOAcute]W", " ", "i", " ", 
        "ZAPIS"}]}], "===", "===", "===", "===", "===", "===", "=="}], "*)"}], 
-   "\n", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"calkowityCzasSekundy", "=", 
      RowBox[{"czasIwynikiAlgorytmu", "[", 
@@ -269,30 +272,33 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
    RowBox[{
     RowBox[{"finalnaTabelaWynikow", "=", 
      RowBox[{"czasIwynikiAlgorytmu", "[", 
-      RowBox[{"[", "2", "]"}], "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+      RowBox[{"[", "2", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
    RowBox[{
     RowBox[{"Print", "[", 
      RowBox[{"\"\<Zako\:0144czono! Kierunek: \>\"", ",", "wybranyKierunek"}], 
      "]"}], ";"}], "\n", 
    RowBox[{
     RowBox[{"Print", "[", 
-     RowBox[{"\"\<Czas wykonania: \>\"", ",", "calkowityCzasSekundy", 
-      ",", "\"\< sekund. Pow\[OAcute]d: \>\"", ",", "powodZakonczenia"}], 
-     "]"}], ";"}], "\[IndentingNewLine]", "\n", 
+     RowBox[{
+     "\"\<Czas wykonania: \>\"", ",", "calkowityCzasSekundy", ",", 
+      "\"\< sekund. Pow\[OAcute]d: \>\"", ",", "powodZakonczenia"}], "]"}], 
+    ";"}], "\n", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"znacznikCzasu", "=", 
      RowBox[{"DateString", "[", 
       RowBox[{"{", 
-       RowBox[{"\"\<Year\>\"", ",", "\"\<-\>\"", ",", "\"\<Month\>\"", 
-        ",", "\"\<-\>\"", ",", "\"\<Day\>\"", ",", "\"\<_\>\"", 
-        ",", "\"\<Hour\>\"", ",", "\"\<-\>\"", ",", "\"\<Minute\>\""}], "}"}],
-       "]"}]}], ";"}], "\n", 
+       RowBox[{
+       "\"\<Year\>\"", ",", "\"\<-\>\"", ",", "\"\<Month\>\"", ",", 
+        "\"\<-\>\"", ",", "\"\<Day\>\"", ",", "\"\<_\>\"", ",", 
+        "\"\<Hour\>\"", ",", "\"\<-\>\"", ",", "\"\<Minute\>\""}], "}"}], 
+      "]"}]}], ";"}], "\n", 
    RowBox[{
     RowBox[{"nazwaPlikuCSV", "=", 
      RowBox[{"StringJoin", "[", 
       RowBox[{
       "znacznikCzasu", ",", "\"\<_\>\"", ",", "\"\<wynik_algorytmu_\>\"", ",",
-        "wybranyKierunek", ",", "\"\<.csv\>\""}], "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+        "wybranyKierunek", ",", "\"\<.csv\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
    RowBox[{
     RowBox[{"tabelaDoZapisu", "=", "finalnaTabelaWynikow"}], ";"}], "\n", 
    RowBox[{
@@ -306,12 +312,12 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
         RowBox[{"ToString", "[", 
          RowBox[{"tabelaDoZapisu", "[", 
           RowBox[{"[", 
-           RowBox[{"i", ",", "2"}], "]"}], "]"}], "]"}], 
-        "<>", "\"\<\\\"\>\""}]}], ",", 
+           RowBox[{"i", ",", "2"}], "]"}], "]"}], "]"}], "<>", 
+        "\"\<\\\"\>\""}]}], ",", 
       RowBox[{"{", 
        RowBox[{"i", ",", "2", ",", 
         RowBox[{"Length", "[", "tabelaDoZapisu", "]"}]}], "}"}]}], "]"}], 
-    ";"}], "\n", "\[IndentingNewLine]", 
+    ";"}], "\[IndentingNewLine]", "\n", 
    RowBox[{
     RowBox[{"AppendTo", "[", 
      RowBox[{"tabelaDoZapisu", ",", 
@@ -322,20 +328,23 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
     RowBox[{"AppendTo", "[", 
      RowBox[{"tabelaDoZapisu", ",", 
       RowBox[{"{", 
-       RowBox[{"\"\<Status zakonczenia:\>\"", ",", "powodZakonczenia", 
-        ",", "\"\<\>\""}], "}"}]}], "]"}], ";"}], "\n", 
+       RowBox[{
+       "\"\<Status zakonczenia:\>\"", ",", "powodZakonczenia", ",", 
+        "\"\<\>\""}], "}"}]}], "]"}], ";"}], "\n", 
    RowBox[{
     RowBox[{"AppendTo", "[", 
      RowBox[{"tabelaDoZapisu", ",", 
       RowBox[{"{", 
-       RowBox[{"\"\<Kierunek szukania:\>\"", ",", "wybranyKierunek", 
-        ",", "\"\<\>\""}], "}"}]}], "]"}], ";"}], "\n", 
+       RowBox[{
+       "\"\<Kierunek szukania:\>\"", ",", "wybranyKierunek", ",", 
+        "\"\<\>\""}], "}"}]}], "]"}], ";"}], "\n", 
    RowBox[{
     RowBox[{"AppendTo", "[", 
      RowBox[{"tabelaDoZapisu", ",", 
       RowBox[{"{", 
-       RowBox[{"\"\<Czas wykonania (s):\>\"", ",", "calkowityCzasSekundy", 
-        ",", "\"\<\>\""}], "}"}]}], "]"}], ";"}], "\n", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<Czas wykonania (s):\>\"", ",", "calkowityCzasSekundy", ",", 
+        "\"\<\>\""}], "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", "\n", 
    RowBox[{
     RowBox[{"Export", "[", 
      RowBox[{
@@ -356,8 +365,7 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
    3.9898384111813183`*^9}, 3.989838510248663*^9, {3.989838592017252*^9, 
    3.989838645298559*^9}, {3.989838786516165*^9, 3.9898388676672535`*^9}, {
    3.9898389029181614`*^9, 3.9898389534986725`*^9}},
- CellLabel->
-  "In[757]:=",ExpressionUUID->"b72489c8-b068-dd49-b2c2-d64283399733"],
+ CellLabel->"In[1]:=",ExpressionUUID->"b72489c8-b068-dd49-b2c2-d64283399733"],
 
 Cell[CellGroupData[{
 
@@ -371,34 +379,34 @@ Cell[BoxData[
   3.989838207198181*^9, 3.989838279668354*^9, 3.989838317218992*^9, {
    3.9898383831021233`*^9, 3.989838422708786*^9}, 3.9898386464874268`*^9, {
    3.9898388349384403`*^9, 3.9898388517523193`*^9}, {3.989838908476343*^9, 
-   3.989838955000309*^9}},
+   3.989838955000309*^9}, 3.990532474703518*^9},
  CellLabel->
   "During evaluation of \
-In[757]:=",ExpressionUUID->"4e6bd87d-a350-bc4a-9725-bf096f8d0765"],
+In[1]:=",ExpressionUUID->"db044419-39f4-4f07-8fdf-28ba7fce176f"],
 
 Cell[BoxData[
  InterpretationBox[
-  RowBox[{"\<\"Czas wykonania: \"\>", "\[InvisibleSpace]", "0.0135121`", 
+  RowBox[{"\<\"Czas wykonania: \"\>", "\[InvisibleSpace]", "0.0168246`", 
    "\[InvisibleSpace]", "\<\" sekund. Pow\[OAcute]d: \"\>", 
    "\[InvisibleSpace]", "\<\"Osiagnieto limit iteracji\"\>"}],
   SequenceForm[
-  "Czas wykonania: ", 0.0135121, " sekund. Pow\[OAcute]d: ", 
+  "Czas wykonania: ", 0.0168246, " sekund. Pow\[OAcute]d: ", 
    "Osiagnieto limit iteracji"],
   Editable->False]], "Print",
  CellChangeTimes->{
   3.989838207198181*^9, 3.989838279668354*^9, 3.989838317218992*^9, {
    3.9898383831021233`*^9, 3.989838422708786*^9}, 3.9898386464874268`*^9, {
    3.9898388349384403`*^9, 3.9898388517523193`*^9}, {3.989838908476343*^9, 
-   3.989838955002325*^9}},
+   3.989838955000309*^9}, 3.99053247470952*^9},
  CellLabel->
   "During evaluation of \
-In[757]:=",ExpressionUUID->"8a60506b-12cf-ee4b-937d-aca6247d655b"]
+In[1]:=",ExpressionUUID->"54de6e67-fd9c-48eb-9781-eb5562ff8999"]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{958.5, 938.25},
-WindowMargins->{{Automatic, -421.5}, {557.25, Automatic}},
-FrontEndVersion->"14.3 for Microsoft Windows (64-bit) (July 8, 2025)",
+WindowSize->{958.5, 657.},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (August 22, 2022)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"a7cc61d8-459b-e642-87ce-4b012240f28a"
 ]
@@ -414,10 +422,10 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[576, 22, 14343, 337, 2093, "Input",ExpressionUUID->"b72489c8-b068-dd49-b2c2-d64283399733"],
+Cell[576, 22, 14391, 345, 2113, "Input",ExpressionUUID->"b72489c8-b068-dd49-b2c2-d64283399733"],
 Cell[CellGroupData[{
-Cell[14944, 363, 597, 13, 22, "Print",ExpressionUUID->"4e6bd87d-a350-bc4a-9725-bf096f8d0765"],
-Cell[15544, 378, 747, 16, 22, "Print",ExpressionUUID->"8a60506b-12cf-ee4b-937d-aca6247d655b"]
+Cell[14992, 371, 617, 13, 22, "Print",ExpressionUUID->"db044419-39f4-4f07-8fdf-28ba7fce176f"],
+Cell[15612, 386, 766, 16, 22, "Print",ExpressionUUID->"54de6e67-fd9c-48eb-9781-eb5562ff8999"]
 }, Open  ]]
 }, Open  ]]
 }
