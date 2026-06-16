@@ -41,6 +41,8 @@ def run_experiment(alphabet, start_word, strategy="rightmost", ds="list", iters=
 
     start_time = time.perf_counter()
     
+    insert_depths = [] # Lista do śledzenia odległości wstawienia (0 = wstawienie na końcu)
+
     for _ in range(iters):
         n = len(s)
         found = False
@@ -58,12 +60,14 @@ def run_experiment(alphabet, start_word, strategy="rightmost", ds="list", iters=
                     if issquarefree_seq(w, ds):
                         s = w
                         found = True
+                        insert_depths.append(n - p) # n to stara długość, p to miejsce wstawienia
                         break
                 elif ds == "list":
                     # Mutowalne - modyfikujemy w miejscu
                     s.insert(p, c)
                     if issquarefree_seq(s, ds):
                         found = True
+                        insert_depths.append(n - p)
                         break
                     else:
                         s.pop(p) # Wycofujemy zmianę
@@ -72,6 +76,7 @@ def run_experiment(alphabet, start_word, strategy="rightmost", ds="list", iters=
                     s.insert(p, c)
                     if issquarefree_seq(s, ds):
                         found = True
+                        insert_depths.append(n - p)
                         break
                     else:
                         del s[p] # Wycofujemy zmianę na liście dwukierunkowej
@@ -82,6 +87,7 @@ def run_experiment(alphabet, start_word, strategy="rightmost", ds="list", iters=
             break
             
     end_time = time.perf_counter()
+    
     # Formatowanie wyniku do czytelnej postaci przed zwróceniem
     if ds in ["list", "deque"]:
         # Jeśli elementem są emotki (dłuższe stringi), łączymy je spacją dla czytelności.
@@ -92,8 +98,11 @@ def run_experiment(alphabet, start_word, strategy="rightmost", ds="list", iters=
             final_seq = "".join(map(str, s))
     else:
         final_seq = s
+        
+    # Wyliczenie średniej głębokości (zabezpieczenie przed błędem dzielenia przez 0)
+    avg_depth = sum(insert_depths) / len(insert_depths) if insert_depths else 0
 
-    return end_time - start_time, len(s), final_seq
+    return end_time - start_time, len(s), final_seq, avg_depth
 
 # Definicja scenariuszy (różne alfabety, typy i formy struktur)
 experiments = [
@@ -117,12 +126,12 @@ stats_dict = {}
 
 # Parametry globalne
 ITERATIONS = 200
-STRATEGY = "rightmostfdsf"
+STRATEGY = "rightmost" # Poprawiona literówka
 
 print("Trwa testowanie... (sprawdzanie `deque` może chwilę potrwać)")
 
 for idx, exp in enumerate(experiments):
-    exec_time, final_len, final_seq = run_experiment(
+    exec_time, final_len, final_seq, avg_depth = run_experiment(
         alphabet=exp["alphabet"],
         start_word=exp["start"],
         strategy=STRATEGY,
@@ -137,12 +146,14 @@ for idx, exp in enumerate(experiments):
         "struktura_danych": exp["ds"],
         "iteracje": ITERATIONS,
         "dlugosc_koncowa": final_len,
+        "srednia_glebokosc": round(avg_depth, 3), # <--- Zapisujemy średnią głębokość do słownika
         "czas_wykonania_sek": round(exec_time, 5),
         "wygenerowany_ciag": final_seq
     }
     results.append(res)
     
-    stats_dict[exp["nazwa"]] = round(exec_time, 5)
+    # Zmodyfikowany wpis do słownika statystyk, by od razu pokazywał głębokość w konsoli
+    stats_dict[exp["nazwa"]] = f"Czas: {round(exec_time, 4)} s | Średnia głębokość: {round(avg_depth, 3)}"
 
 # Eksport do CSV
 csv_filename = 'wyniki_eksperymentow_603.csv'
@@ -153,8 +164,8 @@ with open(csv_filename, 'w', newline='', encoding='utf-8') as f:
 
 print(f"\n✅ Zapisano plik {csv_filename}!\n")
 
-print("-" * 50)
-print(f"STATYSTYKI CZASOWE ({ITERATIONS} iteracji) - słownik:")
-print("-" * 50)
+print("-" * 75)
+print(f"STATYSTYKI CZASOWE I GŁĘBOKOŚCI ({ITERATIONS} iteracji) - podsumowanie:")
+print("-" * 75)
 for k, v in stats_dict.items():
-    print(f"{k.ljust(35)} : {v} s")
+    print(f"{k.ljust(35)} : {v}")
