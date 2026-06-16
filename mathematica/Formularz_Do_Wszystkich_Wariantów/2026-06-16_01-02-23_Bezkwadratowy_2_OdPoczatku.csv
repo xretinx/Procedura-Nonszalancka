@@ -1,0 +1,9 @@
+"sep=,"
+"DlugoscSlowa","SlowoBezKwadratow","ParametrPrzesuniecia"
+1,"""2""",1
+2,"""12""",1
+3,"""212""",1
+"","",""
+"Status zakonczenia:","Algorytm utknal - brak mozliwosci dalszego rozszerzenia slowa",""
+"Kierunek:","OdPoczatku",""
+"Czas wykonania (s):",0.0010564,""

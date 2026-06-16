@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     58864,       1287]
-NotebookOptionsPosition[     58278,       1269]
-NotebookOutlinePosition[     58680,       1285]
-CellTagsIndexPosition[     58637,       1282]
+NotebookDataLength[     63309,       1359]
+NotebookOptionsPosition[     62692,       1340]
+NotebookOutlinePosition[     63125,       1357]
+CellTagsIndexPosition[     63082,       1354]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -200,7 +200,7 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
           RowBox[{"\"\<Historia\>\"", "->", 
            RowBox[{"czasIwyniki", "[", 
             RowBox[{"[", "2", "]"}], "]"}]}]}], "|>"}]}]}], "]"}]}], ";"}], 
-   "\n", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", 
     RowBox[{
      RowBox[{"2.", " ", "Algorytm", " ", "Liczb", " ", "Pierwszych"}], "-", 
@@ -216,8 +216,9 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
      RowBox[{"Block", "[", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"a", ",", "czasy", ",", "kroki", ",", "alfabetInt"}], "}"}], 
-       ",", 
+        RowBox[{"a", ",", "czasy", ",", "kroki", ",", "alfabetInt", ",", " ", 
+         RowBox[{"powod", " ", "=", " ", "\"\<Ukonczono (Wariant A)\>\""}]}], 
+        "}"}], ",", 
        RowBox[{
         RowBox[{"alfabetInt", "=", 
          RowBox[{"ToExpression", "/@", "alfabet"}]}], ";", 
@@ -242,30 +243,33 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
                 RowBox[{"IntegerDigits", "[", 
                  RowBox[{"a", "[", 
                   RowBox[{"k", "-", "1"}], "]"}], "]"}]}]}], "}"}], ",", 
-             RowBox[{"Do", "[", 
-              RowBox[{
+             RowBox[{
+              RowBox[{"Do", "[", 
                RowBox[{
-                RowBox[{"p", "=", 
-                 RowBox[{"FromDigits", "@", 
-                  RowBox[{"Insert", "[", 
-                   RowBox[{"d", ",", "c", ",", 
+                RowBox[{
+                 RowBox[{"p", "=", 
+                  RowBox[{"FromDigits", "@", 
+                   RowBox[{"Insert", "[", 
+                    RowBox[{"d", ",", "c", ",", 
                     RowBox[{"-", "i"}]}], "]"}]}]}], ";", 
-                "\[IndentingNewLine]", 
-                RowBox[{"If", "[", 
-                 RowBox[{
+                 "\[IndentingNewLine]", 
+                 RowBox[{"If", "[", 
                   RowBox[{
-                   RowBox[{"p", ">", 
+                   RowBox[{
+                    RowBox[{"p", ">", 
                     RowBox[{"a", "[", 
                     RowBox[{"k", "-", "1"}], "]"}]}], "&&", 
-                   RowBox[{"PrimeQ", "[", "p", "]"}]}], ",", 
-                  RowBox[{"Throw", "@", "p"}]}], "]"}]}], ",", 
-               RowBox[{"{", 
-                RowBox[{"c", ",", "alfabetInt"}], "}"}], ",", 
-               RowBox[{"{", 
-                RowBox[{"i", ",", "1", ",", 
-                 RowBox[{"1", "+", 
-                  RowBox[{"Length", "@", "d"}]}]}], "}"}]}], "]"}]}], "]"}], 
-           "]"}]}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"PrimeQ", "[", "p", "]"}]}], ",", 
+                   RowBox[{"Throw", "@", "p"}]}], "]"}]}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"c", ",", "alfabetInt"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"i", ",", "1", ",", 
+                  RowBox[{"1", "+", 
+                   RowBox[{"Length", "@", "d"}]}]}], "}"}]}], "]"}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Throw", "[", "p", "]"}]}]}], "]"}], "]"}]}]}], ";", 
+        "\[IndentingNewLine]", 
         RowBox[{
          RowBox[{"{", 
           RowBox[{"czasy", ",", "kroki"}], "}"}], "=", 
@@ -278,8 +282,7 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
           RowBox[{"\"\<Czas\>\"", "->", "czasy"}], ",", 
           RowBox[{"\"\<WynikFinalny\>\"", "->", 
            RowBox[{"Last", "[", "kroki", "]"}]}], ",", 
-          RowBox[{"\"\<Status\>\"", "->", "\"\<Ukonczono (Wariant A)\>\""}], 
-          ",", 
+          RowBox[{"\"\<Status\>\"", "->", "powod"}], ",", 
           RowBox[{"\"\<Historia\>\"", "->", 
            RowBox[{"MapIndexed", "[", 
             RowBox[{
@@ -288,26 +291,31 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
                RowBox[{
                 RowBox[{"#2", "[", 
                  RowBox[{"[", "1", "]"}], "]"}], ",", "#1"}], "}"}], "&"}], 
-             ",", "kroki"}], "]"}]}]}], "|>"}]}]}], "]"}]}], ";"}], "\n", 
-   "\[IndentingNewLine]", 
+             ",", "kroki"}], "]"}]}]}], "|>"}]}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
      RowBox[{"3.", " ", "Algorytm", " ", "Liczb", " ", "Pierwszych"}], "-", 
      RowBox[{"Wariant", " ", "B", " ", 
       RowBox[{"(", 
        RowBox[{"Z", " ", "p\:0119tlami", " ", "For"}], ")"}]}]}], "*)"}], 
-   "\[IndentingNewLine]", 
+   "\n", 
    RowBox[{
     RowBox[{
      RowBox[{"AlgorytmPrimeB", "[", 
-      RowBox[{"n_Integer", ",", "start_"}], "]"}], ":=", 
+      RowBox[{"n_Integer", ",", "alfabet_List", ",", "start_"}], "]"}], ":=", 
      RowBox[{"Block", "[", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"k", ",", "K", ",", "r", ",", "m", ",", "czasIwyniki", ",", 
-         RowBox[{"powod", "=", "\"\<Osiagnieto limit iteracji\>\""}]}], "}"}],
-        ",", 
+        RowBox[{
+        "k", ",", "K", ",", "r", ",", "m", ",", "czasIwyniki", ",", 
+         "alfabetInt", ",", 
+         RowBox[{"powod", "=", " ", "\"\<Ukonczono (Wariant B)\>\""}]}], 
+        "}"}], ",", 
        RowBox[{
+        RowBox[{"alfabetInt", "=", 
+         RowBox[{"ToExpression", "/@", "alfabet"}]}], ";", 
+        "\[IndentingNewLine]", 
         RowBox[{"k", "=", 
          RowBox[{"If", "[", 
           RowBox[{
@@ -345,7 +353,8 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
                  RowBox[{"For", "[", 
                   RowBox[{
                    RowBox[{"d", "=", "0"}], ",", 
-                   RowBox[{"d", "<=", "9"}], ",", 
+                   RowBox[{"d", "<=", 
+                    RowBox[{"Length", "[", "alfabet", "]"}]}], ",", 
                    RowBox[{"d", "++"}], ",", 
                    RowBox[{"If", "[", 
                     RowBox[{
@@ -362,8 +371,8 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
                     RowBox[{
                     RowBox[{"k", "!=", "m"}], ",", 
                     RowBox[{"k", "=", "m"}], ",", 
-                    RowBox[{"powod", "=", "\"\<FINITE\>\""}]}], "]"}], ";", 
-                    "\[IndentingNewLine]", 
+                    RowBox[{"powod", "=", "\"\<Ukonczono (Wariant B)\>\""}]}],
+                     "]"}], ";", "\[IndentingNewLine]", 
                     RowBox[{"AppendTo", "[", 
                     RowBox[{"K", ",", 
                     RowBox[{"{", 
@@ -384,7 +393,7 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
           RowBox[{"\"\<Historia\>\"", "->", 
            RowBox[{"czasIwyniki", "[", 
             RowBox[{"[", "2", "]"}], "]"}]}]}], "|>"}]}]}], "]"}]}], ";"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", " ", 
     RowBox[{
     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
@@ -393,7 +402,7 @@ rozszerzenia slowa\>\""}], ";", "\[IndentingNewLine]",
    RowBox[{"(*", 
     RowBox[{
     "SYSTEM", " ", "INTERFEJSU", " ", "I", " ", "GENERATORA", " ", 
-     "RAPORT\[CapitalOAcute]W"}], "*)"}], "\n", 
+     "RAPORT\[CapitalOAcute]W"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{
     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
@@ -574,9 +583,9 @@ startowego!\>\"", ",", "Red", ",", "Bold"}], "]"}]}], ",",
                     RowBox[{
                     RowBox[{"wynikAlg", "=", 
                     RowBox[{"AlgorytmBezkwadratowy", "[", 
-                    RowBox[{
-                    "slowo", ",", "alphabetList", ",", "liczbaIteracji", ",", 
-                    "wybranyKierunek"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"slowo", ",", "alphabetList", ",", 
+                    "liczbaIteracji", ",", "wybranyKierunek"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
                     RowBox[{"AppendTo", "[", 
                     RowBox[{"tabelaWynikowa", ",", 
                     RowBox[{"{", 
@@ -925,34 +934,45 @@ startowego!\>\"", ",", "Red", ",", "Bold"}], "]"}]}], ",",
             RowBox[{"Dynamic", "[", "raport", "]"}]}], "}"}], ",", "Left"}], 
          "]"}], "]"}], "]"}], "]"}]}], "]"}]}]}]], "Input",
  CellChangeTimes->{{3.9905346990977306`*^9, 3.990534699098647*^9}, {
-  3.9905351501791096`*^9, 3.990535193611541*^9}, {3.9905352528416634`*^9, 
-  3.990535255059379*^9}, {3.9905357807419124`*^9, 3.990535861043027*^9}, {
-  3.9905360088281374`*^9, 3.990536029107113*^9}, {3.990536123800291*^9, 
-  3.9905361327385283`*^9}, {3.990536309224352*^9, 3.990536377697006*^9}, {
-  3.990539770913172*^9, 3.990539826357922*^9}, {3.9905399075579863`*^9, 
-  3.9905399098427644`*^9}, {3.9905400786202507`*^9, 3.990540079932351*^9}, {
-  3.990540145282538*^9, 3.9905401533909874`*^9}},
- CellLabel->
-  "In[103]:=",ExpressionUUID->"00e17dc1-f8fd-4681-8f91-554a0c1b0214"],
+   3.9905351501791096`*^9, 3.990535193611541*^9}, {3.9905352528416634`*^9, 
+   3.990535255059379*^9}, {3.9905357807419124`*^9, 3.990535861043027*^9}, {
+   3.9905360088281374`*^9, 3.990536029107113*^9}, {3.990536123800291*^9, 
+   3.9905361327385283`*^9}, {3.990536309224352*^9, 3.990536377697006*^9}, {
+   3.990539770913172*^9, 3.990539826357922*^9}, {3.9905399075579863`*^9, 
+   3.9905399098427644`*^9}, {3.9905400786202507`*^9, 3.990540079932351*^9}, {
+   3.990540145282538*^9, 3.9905401533909874`*^9}, {3.9905825575729055`*^9, 
+   3.9905826857560463`*^9}, 3.9905827192436533`*^9, {3.9905827698748193`*^9, 
+   3.9905828888533907`*^9}, 3.9905829671193037`*^9, {3.9905830066686764`*^9, 
+   3.990583018084086*^9}, {3.990583062074606*^9, 3.990583088145265*^9}, {
+   3.990583133191205*^9, 3.990583135666134*^9}, {3.990583167607314*^9, 
+   3.9905831724278655`*^9}},
+ CellLabel->"In[38]:=",ExpressionUUID->"00e17dc1-f8fd-4681-8f91-554a0c1b0214"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`algorithm$$ = {
-  "Algorytm Bezkwadratowy"}, $CellContext`alphabet$$ = 
-  "a, b, c", $CellContext`alphabetList$$ = {
-  "a", "b", "c"}, $CellContext`liczbaIteracji$$ = 
-  20, $CellContext`wybranyKierunek$$ = 
-  "OdKonca", $CellContext`starterWords$$ = 
-  "a", $CellContext`starterWordsList$$ = {"a"}, $CellContext`raport$$ = Panel[
+  "Algorytm Bezkwadratowy", "Algorytm Prime (Wariant A)", 
+   "Algorytm Prime (Wariant B)"}, $CellContext`alphabet$$ = 
+  "1,2,3,4,5,6,7,8,9", $CellContext`alphabetList$$ = {
+  "1", "2", "3", "4", "5", "6", "7", "8", 
+   "9"}, $CellContext`liczbaIteracji$$ = 200, $CellContext`wybranyKierunek$$ =
+   "OdPoczatku", $CellContext`starterWords$$ = 
+  "1,12,21,32", $CellContext`starterWordsList$$ = {
+  "1", "12", "21", "32"}, $CellContext`raport$$ = Panel[
    Column[{
      Style["RAPORT GENEROWANIA DANYCH", "Section", 14, 
       RGBColor[0, 
        Rational[2, 3], 0]], 
      Grid[{{"Wybrane algorytmy:", 
-        Row[{"Algorytm Bezkwadratowy"}, " | "]}, {"U\:017cyty alfabet:", 
-        Row[{"a", "b", "c"}, ", "]}, {"S\[LSlash]owa startowe:", 
-        Row[{"a"}, ", "]}, {"Limit iteracji:", 20}, {
+        Row[{
+         "Algorytm Bezkwadratowy", "Algorytm Prime (Wariant A)", 
+          "Algorytm Prime (Wariant B)"}, " | "]}, {"U\:017cyty alfabet:", 
+        Row[{"1", "2", "3", "4", "5", "6", "7", "8", "9"}, ", "]}, {
+       "S\[LSlash]owa startowe:", 
+        Row[{"1", "12", "21", "32"}, ", "]}, {"Limit iteracji:", 200}, {
        "\:015acie\:017cka zapisu plik\[OAcute]w CSV:", 
-        Style["C:\\Users\\grazi\\Downloads\\", Italic]}}, Alignment -> Left], 
+        Style[
+        "C:\\Users\\grazi\\Projectos\\Procedura-Nonszalancka\\mathematica\\\
+Formularz_Do_Wszystkich_Wariant\[OAcute]w\\", Italic]}}, Alignment -> Left], 
      Spacer[10], Delimiter, 
      Spacer[10], 
      Style["Macierz wynik\[OAcute]w i czasu wykonania:", "Subsection"], 
@@ -960,7 +980,62 @@ Cell[BoxData[
      Grid[{{
        "S\[LSlash]owo Start", "Wybrany Algorytm", "Wynik Ko\:0144cowy", 
         "Czas wykonania", "Status"}, {
-       "a", "Algorytm Bezkwadratowy", "abacabcacbabcabacabca", "0.0006931 s", 
+       "1", "Algorytm Bezkwadratowy", 
+        "141213121712131214121312151213121412131216121312141213121512131214121\
+312181213121412131215121312141213121612131214121312151213121412131217121312141\
+213121512131214121312161213121412131215121312141213121", "0.0586433 s", 
+        "Osiagnieto limit iteracji"}, {
+       "1", "Algorytm Prime (Wariant A)", 
+        2311313312322131312113132212421212521153312323213231113214212215131214\
+234242123213112312312323121212132372232321211522313321332311431213253124421131\
+2321216112323223323223312212334121821131311212542321, "3.30039 s", 
+        "Ukonczono (Wariant A)"}, {
+       "1", "Algorytm Prime (Wariant B)", 
+        1100503907326243347232893153782906893179773380716300756632030695006357\
+683254399617185901379372495377291953736263609283027587906922906750329035946065\
+89139090279190639686550640174296570141609730750593317, "3.08203 s", 
+        "Osiagnieto limit iteracji"}, {
+       "12", "Algorytm Bezkwadratowy", 
+        "214121312142131213212313213121321231213123132131213212313213121412131\
+214212313213121321231321312141213121431321231321312132123132131412141312141213\
+1214131213141214131214121312141321312132123132131213212", "0.100697 s", 
+        "Osiagnieto limit iteracji"}, {
+       "12", "Algorytm Prime (Wariant A)", 
+        2132123213221321723262313152231123124312322312134124122113123233331321\
+132222122212343131323132222453121126123222513231424112355313122123132121212312\
+12111312433212313133234531243217261343221213112314121, "3.66948 s", 
+        "Ukonczono (Wariant A)"}, {
+       "12", "Algorytm Prime (Wariant B)", 
+        1275709026741830962394355320443503423016932033079307316819021689055813\
+682393204876439083316015941345950970831359294675620962418623203508735699660306\
+907936909260910720843169736470680365396452194073199313, "3.31894 s", 
+        "Osiagnieto limit iteracji"}, {
+       "21", "Algorytm Bezkwadratowy", 
+        "214121312171213121412131215121312141213121612131214121312151213121412\
+131218121312141213121512131214121312161213121412131215121312141213121712131214\
+1213121512131214121312161213121412131215121312141213121", "0.136934 s", 
+        "Osiagnieto limit iteracji"}, {
+       "21", "Algorytm Prime (Wariant A)", 
+        2311313312322131312113132212421212521153312323213231121321421221513121\
+423424212321311231231232312121213237223232121152231332133231143121325312442113\
+12321216112323223323223312212334121821131311212542321, "6.83677 s", 
+        "Ukonczono (Wariant A)"}, {
+       "21", "Algorytm Prime (Wariant B)", 
+        2110519686679594273123178949982808154770308972546490360219999602314969\
+307359289496539037830650546634350742072609795202619631071938191632049263362370\
+830356891270869493092781375340952603614301513946232909, "4.64628 s", 
+        "Osiagnieto limit iteracji"}, {
+       "32", "Algorytm Bezkwadratowy", 
+        "142131213212313213121321231213123132131213212313213121412131214212313\
+213121321231321312141213121431321231321312132123132131412141312141213121413121\
+3141214131214121312141321312132313213121321231321312132", "0.0919802 s", 
+        "Osiagnieto limit iteracji"}, {
+       "32", "Algorytm Prime (Wariant A)", 
+        2923312312513134235221432145362321131213236332213121124231112361335123\
+532112222341312331611213121215212323112336143126132213123212521232142215312361\
+33224232212421231412232113216233211333132331231421321, "4.45195 s", 
+        "Ukonczono (Wariant A)"}, {
+       "32", "Algorytm Prime (Wariant B)", 32, "0.0857542 s", 
         "Osiagnieto limit iteracji"}}, Frame -> All, FrameStyle -> 
       GrayLevel[0.8], Background -> {{
          GrayLevel[0.85], None}, {
@@ -1030,7 +1105,7 @@ Cell[BoxData[
             DynamicBox[ToBoxes[
               InputForm[$CellContext`alphabetList$$ = Map[StringTrim, 
                  StringSplit[$CellContext`alphabet$$, ","]]], StandardForm],
-             ImageSizeCache->{54.18239355468751, {3.0078125, 7.15234375}}]},
+             ImageSizeCache->{144.1815241508484, {1.5117187099531293`, 6.}}]},
            {
             StyleBox["\<\"Liczba iteracji / krok\[OAcute]w:\"\>",
              StripOnInput->False,
@@ -1040,7 +1115,6 @@ Cell[BoxData[
             StyleBox["\<\"Kierunek (Dla bezkwadratowego):\"\>",
              StripOnInput->False,
              FontWeight->Bold], 
-            
             PopupMenuBox[Dynamic[$CellContext`wybranyKierunek$$], {
              "OdPoczatku"->"\<\"OdPoczatku\"\>", 
              "OdKonca"->"\<\"OdKonca\"\>"}]},
@@ -1063,7 +1137,7 @@ Cell[BoxData[
               InputForm[$CellContext`starterWordsList$$ = Map[StringTrim, 
                  StringSplit[$CellContext`starterWords$$, ","]]], 
               StandardForm],
-             ImageSizeCache->{17.14453125, {3.0078125, 7.15234375}}]}
+             ImageSizeCache->{76.87206400680543, {1.5117187099531293`, 6.}}]}
           },
           AutoDelete->False,
           GridBoxAlignment->{"Columns" -> {{Left}}},
@@ -1116,13 +1190,13 @@ $CellContext`wybranyKierunek$$];
                     "Year", "-", "Month", "-", "Day", "_", "Hour", "-", 
                     "Minute", "-", 
                     "Second"}]; $CellContext`nazwaPlikuCSV$ = \
-$CellContext`znacznikCzasu <> "_Bezkwadratowy_" <> $CellContext`slowo <> 
-                    "_" <> $CellContext`wybranyKierunek$$ <> 
+(((($CellContext`znacznikCzasu <> "_Bezkwadratowy_") <> $CellContext`slowo) <> 
+                    "_") <> $CellContext`wybranyKierunek$$) <> 
                     ".csv"; $CellContext`danePlikuCSV$ = \
 $CellContext`wynikAlg$["Historia"]; 
-                   Do[Part[$CellContext`danePlikuCSV$, $CellContext`i, 2] = 
+                   Do[Part[$CellContext`danePlikuCSV$, $CellContext`i, 2] = (
                     "\"" <> ToString[
-                    Part[$CellContext`danePlikuCSV$, $CellContext`i, 2]] <> 
+                    Part[$CellContext`danePlikuCSV$, $CellContext`i, 2]]) <> 
                     "\"", {$CellContext`i, 2, 
                     Length[$CellContext`danePlikuCSV$]}]; 
                    AppendTo[$CellContext`danePlikuCSV$, {"", "", ""}]; 
@@ -1152,7 +1226,7 @@ $CellContext`alphabetList$$, $CellContext`slowo];
                     "Year", "-", "Month", "-", "Day", "_", "Hour", "-", 
                     "Minute", "-", 
                     "Second"}]; $CellContext`nazwaPlikuCSV$ = \
-$CellContext`znacznikCzasu <> "_Prime_WariantA_" <> $CellContext`slowo <> 
+(($CellContext`znacznikCzasu <> "_Prime_WariantA_") <> $CellContext`slowo) <> 
                     ".csv"; $CellContext`danePlikuCSV$ = \
 $CellContext`wynikAlg$["Historia"]; 
                    PrependTo[$CellContext`danePlikuCSV$, {
@@ -1182,7 +1256,7 @@ $CellContext`slowo];
                     "Year", "-", "Month", "-", "Day", "_", "Hour", "-", 
                     "Minute", "-", 
                     "Second"}]; $CellContext`nazwaPlikuCSV$ = \
-$CellContext`znacznikCzasu <> "_Prime_WariantB_" <> $CellContext`slowo <> 
+(($CellContext`znacznikCzasu <> "_Prime_WariantB_") <> $CellContext`slowo) <> 
                     ".csv"; $CellContext`danePlikuCSV$ = \
 $CellContext`wynikAlg$["Historia"]; 
                    PrependTo[$CellContext`danePlikuCSV$, {
@@ -1244,7 +1318,8 @@ $CellContext`wynikAlg$["Historia"];
          "Spacer1"]},
        {
         DynamicBox[ToBoxes[$CellContext`raport$$, StandardForm],
-         ImageSizeCache->{430., {99.43359375, 103.56640625}}]}
+         ImageSizeCache->{
+          995.8499999999999, {244.56523442426698`, 248.28476557573305`}}]}
       },
       DefaultBaseStyle->"Column",
       GridBoxAlignment->{"Columns" -> {{Left}}},
@@ -1253,13 +1328,9 @@ $CellContext`wynikAlg$["Historia"];
    Deploy,
    DefaultBaseStyle->"Deploy"],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{
-  3.990535194465231*^9, 3.9905352559265313`*^9, 3.990535861986063*^9, 
-   3.9905360335887356`*^9, 3.990536135916746*^9, {3.990536329417696*^9, 
-   3.9905363486391754`*^9}, 3.9905363795817823`*^9, 3.9905398304410954`*^9, 
-   3.990540013373501*^9, 3.9905400812796483`*^9, 3.990540155169532*^9},
- CellLabel->
-  "Out[106]=",ExpressionUUID->"89fdb99c-4c80-42d8-a8b8-47967333f5e6"]
+ CellChangeTimes->{3.9905830892011347`*^9, 3.990583136343469*^9, 
+  3.9905831735183783`*^9},
+ CellLabel->"Out[41]=",ExpressionUUID->"9c9c1c35-0832-4f55-98e8-dd3e7472d368"]
 }, Open  ]],
 
 Cell[BoxData[""], "Input",
@@ -1267,8 +1338,9 @@ Cell[BoxData[""], "Input",
   3.990533338422436*^9},ExpressionUUID->"f1f8ece6-0181-4750-b296-\
 92246f895820"]
 },
-WindowSize->{1109., 626.5},
-WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowSize->{1108, 620},
+WindowMargins->{{0.5, Automatic}, {Automatic, 0.5}},
+Magnification:>0.9 Inherited,
 FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (August 22, 2022)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"76e4d9ca-01cd-4ac2-a301-1776379e4013"
@@ -1285,10 +1357,10 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 42368, 913, 3683, "Input",ExpressionUUID->"00e17dc1-f8fd-4681-8f91-554a0c1b0214"],
-Cell[42951, 937, 15180, 324, 527, "Output",ExpressionUUID->"89fdb99c-4c80-42d8-a8b8-47967333f5e6"]
+Cell[580, 22, 43174, 926, 3400, "Input",ExpressionUUID->"00e17dc1-f8fd-4681-8f91-554a0c1b0214"],
+Cell[43757, 950, 18788, 382, 764, "Output",ExpressionUUID->"9c9c1c35-0832-4f55-98e8-dd3e7472d368"]
 }, Open  ]],
-Cell[58146, 1264, 128, 3, 28, "Input",ExpressionUUID->"f1f8ece6-0181-4750-b296-92246f895820"]
+Cell[62560, 1335, 128, 3, 25, "Input",ExpressionUUID->"f1f8ece6-0181-4750-b296-92246f895820"]
 }
 ]
 *)
